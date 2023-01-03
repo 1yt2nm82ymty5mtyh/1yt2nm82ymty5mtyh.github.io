@@ -1,0 +1,161 @@
+<head>
+	<script src="/static/ovewm.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+	<link rel="stylesheet" href="static/stye.css">
+	<!--<meta name="og:title" content="" />
+	<meta name="og:type" content="" />
+	<meta name="og:description" content="" />
+	<meta name="og:url" content="" />
+	<meta name="og:image" content="" />
+	<meta name="theme-color" content="#b45bc0"> -->
+</head>
+
+<body>
+	<audio id="hospodarmartintypebeat" src="/static/hospodarmartintypebeat.mp3" loop> </audio>
+	<div id="particles-js"></div>
+	<div class="main center">
+		<div style="font-size: 50px;" class="logo-bass logo-blur"><span class="logo-neon">playbois.club</span></div>
+	</div>
+	<div class="controls"> <a href="steam://connect/45.140.140.240:27047">server</a> / <a href="https://discord.gg/hgp7G62WP6">discord</a> </div>
+	<div class="overlay">
+	    <div class="center"> click anywhere to enter </div>
+	</div>
+	<script>
+	var rythm;
+	var initialized = false;
+	var init_rythm = () => {
+		rythm = new Rythm();
+		rythm.addRythm('logo-bass', 'pulse', 0, 8);
+		rythm.addRythm('logo-neon', 'textNeon', 80, 200, {
+			to: [180, 91, 192],
+			from: [180, 91, 192]
+		});
+		rythm.addRythm('logo-blur', 'blur', 80, 120, {
+			min: 0,
+			max: 3
+		});
+	};
+	hospodarmartintypebeat.volume = 0.2;
+	var play = () => {
+		if(initialized) return;
+		hospodarmartintypebeat.play().then(() => {
+			init_rythm();
+			rythm.connectExternalAudioElement(hospodarmartintypebeat);
+			rythm.start();
+			$(".overlay").addClass("hidden");
+			initialized = true;
+		});
+	};
+	play();
+	window.onclick = () => {
+		play();
+	}
+	particlesJS("particles-js", {
+		"particles": {
+			"number": {
+				"value": 260,
+				"density": {
+					"enable": true,
+					"value_area": 800
+				}
+			},
+            "color": {
+                "value": "#b14df7"
+            },
+			"shape": {
+				"type": "circle",
+				"stroke": {
+					"width": 0,
+					"color": "#000000"
+				},
+				"polygon": {
+					"nb_sides": 5
+				}
+			},
+			"opacity": {
+				"value": 1,
+				"random": true,
+				"anim": {
+					"enable": true,
+					"speed": 1,
+					"opacity_min": 0,
+					"sync": false
+				}
+			},
+			"size": {
+				"value": 3,
+				"random": true,
+				"anim": {
+					"enable": false,
+					"speed": 4,
+					"size_min": 0.3,
+					"sync": false
+				}
+			},
+			"line_linked": {
+				"enable": false,
+				"distance": 150,
+				"color": "#ffffff",
+				"opacity": 0.4,
+				"width": 1
+			},
+			"move": {
+				"enable": true,
+				"speed": 1,
+				"direction": "none",
+				"random": true,
+				"straight": false,
+				"out_mode": "out",
+				"bounce": false,
+				"attract": {
+					"enable": false,
+					"rotateX": 600,
+					"rotateY": 600
+				}
+			}
+		},
+		"interactivity": {
+			"detect_on": "canvas",
+			"events": {
+				"onhover": {
+					"enable": true,
+					"mode": "bubble"
+				},
+				"onclick": {
+					"enable": true,
+					"mode": "repulse"
+				},
+				"resize": true
+			},
+			"modes": {
+				"grab": {
+					"distance": 400,
+					"line_linked": {
+						"opacity": 1
+					}
+				},
+				"bubble": {
+					"distance": 250,
+					"size": 0,
+					"duration": 2,
+					"opacity": 0,
+					"speed": 3
+				},
+				"repulse": {
+					"distance": 400,
+					"duration": 0.4
+				},
+				"push": {
+					"particles_nb": 4
+				},
+				"remove": {
+					"particles_nb": 2
+				}
+			}
+		},
+		"retina_detect": true
+	});
+	</script>
+</body>
